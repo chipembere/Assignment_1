@@ -28,6 +28,7 @@ function getRandomQuote() {
 }
 app.use(cors());
 app.use(express.static("public"));
+
 app.get("/", (req, res) => res.send("index"));
 // Route to get all quotes below.
 app.get('/quotes', (req, res) => {
