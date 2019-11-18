@@ -1,8 +1,10 @@
 $(document).ready(() => {
+  // well done for spotting this and logging to make sure it is working.
   console.log("HI!");
   $("form").submit(event => {
     event.preventDefault();
     console.log("Submitted!")
+    // just needed to make this a get rather than a post
     axios.post('/random_quote').then(response => { // Posting bug.
       quote = response.data;
       console.log(quote);
