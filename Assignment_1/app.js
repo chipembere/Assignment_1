@@ -23,8 +23,8 @@ quotes = [
 ];
 
 function getRandomQuote() {
-  index = Math.floor(Math.random() * quotes.length);
-  return quotes[4];
+  let index = Math.floor(Math.random() * quotes.length);
+  return quotes[index];
 }
 
 app.use(cors());
