@@ -28,12 +28,19 @@ function getRandomQuote() {
 
 app.use(cors());
 app.use(express.static("public"));
+app.use(express.static('public'));
+
+app.set('views', path.join(__dirname, 'views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 app.get("/", (req, res) => res.send("index"));
 
 // write route to get all quotes below this line
 
 // (insert your code here)
+
+
 
 //---------------------------
 
