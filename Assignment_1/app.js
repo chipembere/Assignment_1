@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
-
+const path = require('path');
+// An array of quotes.
 quotes = [
   '"Perfect is the enemy of good." <br> –Voltaire',
   '"I’m still learning." <br> –Michelangelo',
@@ -20,33 +21,33 @@ quotes = [
   '"Live as if you were to die tomorrow. Learn as if you were to live forever." <br> ―Mahatma Gandhi',
   '"A learning curve is essential to growth." <br> –Tammy Bjelland'
 ];
-
+// A function to get a random quote.
 function getRandomQuote() {
-  index = Math.floor(Math.random() * quotes.length);
-  return quotes[4];
+  let index = Math.floor(Math.random() * quotes.length);
+  return quotes[index];
 }
-
 app.use(cors());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => res.send("index"));
-
-// write route to get all quotes below this line
-
-// (insert your code here)
-
+// Route to get all quotes below.
+app.get('/quotes', (req, res) => {
+  res.send(quotes);
+});
 //---------------------------
-
 // write route to get a random quote below this line
-
-// (insert your code here)
-
+app.get('/random_quote', (req, res) => {
+  res.send(getRandomQuote());
+});
 //---------------------------
-
 // make sure route can handle errors if index is out of range
-
-app.get("/quotes/:index", (req, res) => res.send(quotes[req.params.index]));
-
+app.get("/quotes/:index", (req, res) => {
+  let index = [req.params.index];
+  if (index >= 0 && index <= quotes.length - 1) {
+    res.send(quotes[req.params.index]);
+  } else {
+    res.send(`${index} is out of range.\n Try a number between 0 and ${quotes.length - 1} `);
+  }
+});
 //---------------------------
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Example app listening on port ${port} !`));
