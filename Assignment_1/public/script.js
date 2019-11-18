@@ -5,7 +5,7 @@ $(document).ready(() => {
     event.preventDefault();
     console.log("Submitted!")
     // just needed to make this a get rather than a post
-    axios.post('/random_quote').then(response => { // Posting bug.
+    axios.get('/random_quote').then(response => { // Posting bug.
       quote = response.data;
       console.log(quote);
       $("#text").css({
