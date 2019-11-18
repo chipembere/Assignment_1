@@ -1,6 +1,6 @@
 $("form").submit(event => {
   event.preventDefault();
-  axios.post("").then(response => {
+  axios.post("/public/index.html").then(response => {
     quote = response.data;
     $("#text").css({
       "text-align": "center",
@@ -9,6 +9,7 @@ $("form").submit(event => {
       "justify-content": "center",
       "align-items": "center"
     });
+
     $("#text").html(quote);
   });
 });

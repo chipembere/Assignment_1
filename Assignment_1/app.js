@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
+const path = require('path');
 
 quotes = [
   '"Perfect is the enemy of good." <br> –Voltaire',
@@ -28,27 +29,21 @@ function getRandomQuote() {
 
 app.use(cors());
 app.use(express.static("public"));
-app.use(express.static('public'));
-
-app.set('views', path.join(__dirname, 'views'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
 
 app.get("/", (req, res) => res.send("index"));
 
-// write route to get all quotes below this line
-
-// (insert your code here)
-
-
-
+// Route to get all quotes below.
+app.get('/quotes', (req, res) => {
+  res.send(quotes);
+});
 //---------------------------
 
 // write route to get a random quote below this line
-
-// (insert your code here)
-
+app.get('/random_quote', (req, res) => {
+  res.send(getRandomQuote());
+});
 //---------------------------
+
 
 // make sure route can handle errors if index is out of range
 
