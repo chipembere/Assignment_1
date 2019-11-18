@@ -3,7 +3,7 @@ $(document).ready(() => {
   $("form").submit(event => {
     event.preventDefault();
     console.log("Submitted!")
-    axios.post('/random_quote').then(response => {
+    axios.post('/random_quote').then(response => { // Posting bug.
       quote = response.data;
       console.log(quote);
       $("#text").css({
